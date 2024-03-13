@@ -1,8 +1,9 @@
-import Constants.Messages;
-import Constants.ResponseCodes;
-import Model.API.CourierAPI;
-import Model.Body.CourierCreateBody;
-import Model.Body.CourierLoginBody;
+import io.qameta.allure.internal.shadowed.jackson.databind.ser.Serializers;
+import сonstants.Messages;
+import сonstants.ResponseCodes;
+import model.api.CourierAPI;
+import model.body.CourierCreateBody;
+import model.body.CourierLoginBody;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
 import org.junit.Test;
@@ -10,12 +11,16 @@ import org.junit.Test;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNull.notNullValue;
 
-public class CourierLoginTest {
+public class CourierLoginTest extends BaseCourierTest {
     private static final String username = "tempUserName123";
 
     private static final String password = "12345";
 
     private static final String firstName = "Иван";
+
+    public CourierLoginTest(){
+        courierLoginBody = new CourierLoginBody(username, password);
+    }
 
     @Test
     @DisplayName("Проверка корректного логина курьера")
@@ -81,8 +86,4 @@ public class CourierLoginTest {
                 .body("message", equalTo(Messages.COURIER_LOGIN_MISSING_ARGUMENTS));
     }
 
-    @After
-    public void cleanUp(){
-        CourierAPI.deleteCourierIfExists(new CourierLoginBody(username, password));
-    }
 }

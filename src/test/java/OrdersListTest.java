@@ -1,7 +1,6 @@
-import Constants.ResponseCodes;
-import Model.API.OrdersAPI;
+import сonstants.ResponseCodes;
+import model.api.OrdersAPI;
 import io.qameta.allure.Allure;
-import jdk.jfr.Description;
 import org.junit.Test;
 
 import static org.hamcrest.core.IsNull.notNullValue;

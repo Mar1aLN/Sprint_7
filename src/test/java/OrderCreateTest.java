@@ -1,8 +1,8 @@
-import Constants.ResponseCodes;
-import Model.API.OrdersAPI;
-import Model.Body.OrderCancelBody;
-import Model.Body.OrderCreateBody;
-import Model.Body.OrderCreateResponseBody;
+import сonstants.ResponseCodes;
+import model.api.OrdersAPI;
+import model.body.OrderCancelBody;
+import model.body.OrderCreateBody;
+import model.body.OrderCreateResponseBody;
 import io.qameta.allure.Allure;
 import io.restassured.response.Response;
 import org.junit.After;

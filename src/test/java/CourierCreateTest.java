@@ -1,15 +1,14 @@
-import Constants.ResponseCodes;
-import Constants.Messages;
-import Constants.Urls;
-import Model.API.CourierAPI;
-import Model.Body.CourierCreateBody;
-import Model.Body.CourierLoginBody;
+import io.qameta.allure.internal.shadowed.jackson.databind.ser.Serializers;
+import сonstants.ResponseCodes;
+import сonstants.Messages;
+import сonstants.Urls;
+import model.api.CourierAPI;
+import model.body.CourierCreateBody;
+import model.body.CourierLoginBody;
 
 import com.google.gson.Gson;
 import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
-import io.qameta.allure.Story;
-import io.qameta.allure.junit4.DisplayName;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -26,7 +25,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Parameterized.class)
-public class CourierCreateTest {
+public class CourierCreateTest extends BaseCourierTest {
     private final boolean isValid;
 
     private final int responseCode;
@@ -36,8 +35,6 @@ public class CourierCreateTest {
     private final Object responseControlValue;
 
     private final CourierCreateBody courierCreateBody;
-
-    private final CourierLoginBody courierLoginBody;
 
     private List<String> missingFields;
 
@@ -112,18 +109,12 @@ public class CourierCreateTest {
         });
     }
 
-    @Before
-    public void setup(){
-        RestAssured.baseURI = Urls.SCOOTER_BASE_URL;
-        //Удаление куръера, если он существует
-        CourierAPI.deleteCourierIfExists(courierLoginBody);
-
-
-    }
 
     @Test
     @Description("Создание курьера")
     public void courierCreateResponseBodyTest(){
+
+
         StringBuilder testInfo = new StringBuilder();
         if(isValid){
             testInfo.append("Позитивная ");
@@ -148,10 +139,4 @@ public class CourierCreateTest {
     }
 
 
-
-
-    @After
-    public void after(){
-        CourierAPI.deleteCourierIfExists(courierLoginBody);
-    }
 }
